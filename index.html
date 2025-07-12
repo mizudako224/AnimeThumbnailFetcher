@@ -5,26 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>アニメサムネイル取得サイト</title>
   <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
     body {
-      margin:0; font-family: 'Segoe UI', sans-serif;
-      background: #111;
-      color: white;
+      background: black url('https://media.giphy.com/media/l41YtZOb9EUABnuqA/giphy.gif') no-repeat center center fixed;
+      background-size: cover;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
-      height: 100vh;
+      align-items: center;
     }
-    #homeScreen {
-      width: 90%; max-width: 600px;
-      text-align: center;
-    }
-    img.gif {
-      width: 200px;
-      margin: 1rem 0;
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6); /* 半透明の黒背景 */
+      padding: 2rem;
       border-radius: 10px;
-      box-shadow: 0 0 20px #0f0;
+      text-align: center;
+      color: white;
+      max-width: 90%;
+      width: 500px;
+      box-shadow: 0 0 20px #00e676;
     }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
     select, button {
       padding: 0.6rem 1rem;
       font-size: 1rem;
@@ -32,11 +43,13 @@
       border: none;
       margin: 0.5rem;
     }
+
     button {
       background: #00e676;
       color: black;
       cursor: pointer;
     }
+
     #notice {
       margin-top: 1rem;
       font-size: 0.9rem;
@@ -46,9 +59,9 @@
 </head>
 <body>
 
-  <div id="homeScreen">
+  <div class="overlay">
     <h1>アニメサムネイル取得サイト</h1>
-    <img class="gif" src="https://i.pinimg.com/originals/72/34/ba/7234baa9dcb22ad7c60fb0961335e3c8.gif" alt="Anime GIF" />
+
     <div>
       <label for="langSelect">言語を選択 / Select Language:</label>
       <select id="langSelect">
@@ -56,20 +69,21 @@
         <option value="en">English</option>
       </select>
     </div>
+
     <div id="notice">
       管理人からお知らせ：<br />
-      現在、一部不具合が発生しております。
+      現在テスト運用中です。ご意見をお寄せください。
     </div>
+
     <button onclick="startApp()">スタート / Start</button>
   </div>
 
-<script>
-  function startApp() {
-    const lang = document.getElementById('langSelect').value;
-    // 言語をクエリパラメータで渡す例
-    location.href = `main.html?lang=${lang}`;
-  }
-</script>
+  <script>
+    function startApp() {
+      const lang = document.getElementById('langSelect').value;
+      location.href = `main.html?lang=${lang}`;
+    }
+  </script>
 
 </body>
 </html>
