@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>アニメサムネイル取得</title>
+  <title>アニメサムネイル取得サイト</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <style>
     body {
@@ -73,12 +73,6 @@
 <body>
   <header id="header-title">アニメサムネイル取得サイト</header>
   <div class="container">
-    <label for="langSelect">Language / 言語:</label>
-    <select id="langSelect" onchange="setLanguage()">
-      <option value="ja">日本語</option>
-      <option value="en">English</option>
-    </select>
-
     <select id="site">
       <option value="rakuten">Rkuten</option>
       <option value="videx">Videx</option>
@@ -101,8 +95,12 @@
   </div>
 
   <script>
-    function setLanguage() {
-      const lang = document.getElementById('langSelect').value;
+    function getLangFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('lang') || 'ja';
+    }
+
+    function applyLanguage(lang) {
       const t = {
         ja: {
           header: "アニメサムネイル取得サイト",
@@ -190,7 +188,10 @@
       a.click();
     }
 
-    window.onload = setLanguage;
+    window.onload = () => {
+      const lang = getLangFromURL();
+      applyLanguage(lang);
+    };
   </script>
 </body>
 </html>
