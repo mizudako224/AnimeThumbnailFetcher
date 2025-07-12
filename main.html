@@ -1,54 +1,72 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>アニメサムネイル取得サイト</title>
+  <title>Anime Thumbnail Fetcher</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #0e0e0e;
+      background-color: #0b0b0b;
       color: white;
     }
     header {
-      background: #ff8c00;
-      padding: 1rem;
-      font-size: 1.5rem;
+      background: #171717;
+      padding: 1.5rem;
+      font-size: 1.8rem;
       text-align: center;
       font-weight: bold;
+      color: orange;
+      border-bottom: 1px solid #333;
     }
     .container {
-      max-width: 960px;
+      max-width: 1280px;
       margin: 2rem auto;
       padding: 1rem;
     }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
     select, input, button {
-      padding: 0.5rem 1rem;
+      padding: 0.6rem 1rem;
       font-size: 1rem;
-      margin: 0.5rem;
       border-radius: 5px;
       border: none;
+      color: white;
+      background-color: #333;
     }
     button {
-      background-color: #00e676;
+      background-color: #ff9900;
       color: black;
+      font-weight: bold;
       cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #e68300;
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1.5rem;
       margin-top: 2rem;
     }
-    .grid img {
+    .grid-item {
+      text-align: center;
+    }
+    .grid-item img {
       width: 100%;
       border-radius: 8px;
-      transition: transform 0.2s;
+      box-shadow: 0 0 8px rgba(0,0,0,0.5);
       cursor: pointer;
+      transition: transform 0.4s ease-in-out;
     }
-    .grid img:hover {
+    .grid-item img:hover {
       transform: scale(1.05);
     }
     .modal {
@@ -56,75 +74,46 @@
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.8);
+      background-color: rgba(0,0,0,0.9);
       justify-content: center;
       align-items: center;
+      z-index: 10;
+    }
+    .modal.show {
+      display: flex;
     }
     .modal img {
-      max-width: 90%;
-      max-height: 90%;
+      max-width: 95%;
+      max-height: 95%;
       border-radius: 10px;
+      transform: scale(0.9);
+      transition: transform 0.4s ease-in-out;
     }
-    .download {
-      margin-top: 1rem;
+    .modal.show img {
+      transform: scale(1);
     }
   </style>
 </head>
 <body>
-  <header id="header-title">アニメサムネイル取得サイト</header>
+  <header>Anime Thumbnail Fetcher</header>
   <div class="container">
-    <select id="site">
-      <option value="rakuten">Rkuten</option>
-      <option value="videx">Videx</option>
-      <option value="trueid">TrueID</option>
-    </select>
-
-    <input id="id" placeholder="コンテンツID" />
-    <input id="episode" placeholder="エピソード（Videx用）" />
-    <button onclick="fetchThumbnails()" id="fetchButton">取得</button>
-
-    <div class="download">
-      <button onclick="downloadAll()" id="downloadButton">すべてダウンロード</button>
+    <div class="controls">
+      <select id="site">
+        <option value="rakuten">Rkuten</option>
+        <option value="videx">Videx</option>
+        <option value="trueid">TrueID</option>
+      </select>
+      <input id="id" placeholder="Content ID" />
+      <input id="episode" placeholder="Episode (for Videx)" />
+      <button onclick="fetchThumbnails()">Fetch</button>
+      <button onclick="downloadAll()">Download All</button>
     </div>
-
     <div class="grid" id="thumbnails"></div>
   </div>
-
-  <div class="modal" id="modal" onclick="this.style.display='none'">
-    <img id="modal-img" src="" alt="拡大画像">
+  <div class="modal" id="modal" onclick="hideModal()">
+    <img id="modal-img" src="" alt="Preview Image">
   </div>
-
   <script>
-    function getLangFromURL() {
-      const params = new URLSearchParams(window.location.search);
-      return params.get('lang') || 'ja';
-    }
-
-    function applyLanguage(lang) {
-      const t = {
-        ja: {
-          header: "アニメサムネイル取得サイト",
-          id: "コンテンツID",
-          ep: "エピソード（Videx用）",
-          fetch: "取得",
-          download: "すべてダウンロード"
-        },
-        en: {
-          header: "Anime Thumbnail Fetcher",
-          id: "Content ID",
-          ep: "Episode (for Videx)",
-          fetch: "Fetch",
-          download: "Download All"
-        }
-      }[lang];
-
-      document.getElementById('header-title').textContent = t.header;
-      document.getElementById('id').placeholder = t.id;
-      document.getElementById('episode').placeholder = t.ep;
-      document.getElementById('fetchButton').textContent = t.fetch;
-      document.getElementById('downloadButton').textContent = t.download;
-    }
-
     function fetchThumbnails() {
       const site = document.getElementById('site').value;
       const id = document.getElementById('id').value.trim();
@@ -141,7 +130,7 @@
           urls.push(`https://im.akimg.tv.rakuten.co.jp/chapter/${mid2}/${last2}/${id}/${idx}.jpg`);
         }
       } else if (site === 'videx') {
-        if (!id || !ep) return alert("VidexにはIDとエピソードが必要です。");
+        if (!id || !ep) return alert("Videx requires both ID and Episode.");
         urls.push(`https://img.videx.jp/image/capture/${id}_${ep}_01.jpg`);
       } else if (site === 'trueid') {
         for (let i = 1; i <= 180; i++) {
@@ -151,11 +140,15 @@
       }
 
       urls.forEach(url => {
+        const div = document.createElement('div');
+        div.className = 'grid-item';
         const img = document.createElement('img');
         img.src = url;
         img.onclick = () => showModal(url);
-        img.onerror = () => img.remove();
-        container.appendChild(img);
+        img.onerror = () => div.remove();
+        if (site === 'videx') img.style.width = '300%';
+        div.appendChild(img);
+        container.appendChild(div);
       });
     }
 
@@ -164,18 +157,32 @@
       const modalImg = document.getElementById('modal-img');
       modalImg.src = src;
       modal.style.display = 'flex';
+      setTimeout(() => modal.classList.add('show'), 10);
+    }
+
+    function hideModal() {
+      const modal = document.getElementById('modal');
+      modal.classList.remove('show');
+      setTimeout(() => {
+        modal.style.display = 'none';
+        document.getElementById('modal-img').src = '';
+      }, 300);
     }
 
     async function downloadAll() {
-      const zip = new JSZip();
       const imgs = document.querySelectorAll('#thumbnails img');
+      if (imgs.length === 0) {
+        alert("No thumbnails to download.");
+        return;
+      }
 
+      const zip = new JSZip();
       for (let i = 0; i < imgs.length; i++) {
         const img = imgs[i];
         try {
           const response = await fetch(img.src);
           const blob = await response.blob();
-          zip.file(`thumb_${i + 1}.jpg`, blob);
+          zip.file(`image_${i + 1}.jpg`, blob);
         } catch (e) {
           console.error(`Failed to fetch image ${i + 1}`, e);
         }
@@ -187,11 +194,6 @@
       a.download = 'thumbnails.zip';
       a.click();
     }
-
-    window.onload = () => {
-      const lang = getLangFromURL();
-      applyLanguage(lang);
-    };
   </script>
 </body>
 </html>
