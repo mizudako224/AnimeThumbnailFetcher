@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>アニメサムネイル取得サイト</title>
+  <style>
+    body {
+      margin:0; font-family: 'Segoe UI', sans-serif;
+      background: #111;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    #homeScreen {
+      width: 90%; max-width: 600px;
+      text-align: center;
+    }
+    img.gif {
+      width: 200px;
+      margin: 1rem 0;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #0f0;
+    }
+    select, button {
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: none;
+      margin: 0.5rem;
+    }
+    button {
+      background: #00e676;
+      color: black;
+      cursor: pointer;
+    }
+    #notice {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="homeScreen">
+    <h1>アニメサムネイル取得サイト</h1>
+    <img class="gif" src="https://i.pinimg.com/originals/72/34/ba/7234baa9dcb22ad7c60fb0961335e3c8.gif" alt="Anime GIF" />
+    <div>
+      <label for="langSelect">言語を選択 / Select Language:</label>
+      <select id="langSelect">
+        <option value="ja">日本語</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+    <div id="notice">
+      管理人からお知らせ：<br />
+      現在、一部不具合が発生しております。
+    </div>
+    <button onclick="startApp()">スタート / Start</button>
+  </div>
+
+<script>
+  function startApp() {
+    const lang = document.getElementById('langSelect').value;
+    // 言語をクエリパラメータで渡す例
+    location.href = `main.html?lang=${lang}`;
+  }
+</script>
+
+</body>
+</html>
