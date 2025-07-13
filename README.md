@@ -2,71 +2,47 @@
   <img src="https://raw.githubusercontent.com/tokei3n/Anime-thumbnail-acquisition-site/refs/heads/main/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202025-07-13%20110021.png" width="200" alt="サイトのロゴ">
 </p>
 
-<h1 align="center">🌟✨ ウェブページ名 ✨🌟</h1>
+<h1 align="center">Anime-thumbnail-acquisition-site</h1>
 
 <p align="center">
-  🎌 アニメ好きのための、とっておきの場所へようこそ！🎌  
-  推しキャラ・神回・尊いシーンがぎゅっと詰まった世界をお届けします。
+  Simply enter the number and press a button to see a thumbnail of the episode.
 </p>
 
 ---
 
-## 📸 サイトのスクショ
+## 📸 Site screenshot
 
 <p align="center">
-  <img src="ページのスクリーンショットURL" width="700" alt="ウェブページ画像">
+  <img src="https://raw.githubusercontent.com/tokei3n/Anime-thumbnail-acquisition-site/refs/heads/main/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202025-07-13%20110222.png" width="700" alt="ウェブページ画像">
 </p>
 
 ---
 
-## 🎬 サイト紹介
+## 🔗 Access now!
 
-ようこそ！**「ウェブページ名」** へ！
-
-このサイトは、アニメ好きのために作られた、ちょっぴりオタクでとっても便利なWebページです ✨  
-好きな作品の情報、キャラ紹介、グッズリスト、神作画ギャラリーなどなど…  
-💖 **推し活がもっと楽しくなる！** そんな空間を目指しています！
+🎯 [🔗 View web page](https://tokei3n.github.io/Anime-thumbnail-acquisition-site/)
 
 ---
 
-## 💡 主な機能
+## 🛠️ Compatible site
 
-- 🧡 お気に入りアニメをコレクション化！
-- 📅 放送予定・リリースカレンダーをチェック！
-- 🔍 キーワード検索で推しキャラにすぐアクセス！
-- 🎁 限定壁紙・名言集などのお楽しみ要素あり！
-
----
-
-## 🔗 今すぐアクセス！
-
-🎯 [🔗 ウェブページを見る](https://your-site-url.com)
-
----
-
-## 🛠️ 使用技術（裏側もぬかりなし！）
-
-| 技術       | 内容                      |
+| Site name       | Content                      |
 |------------|---------------------------|
-| 🌐 HTML/CSS | アニメ調のキラキラデザイン |
-| ⚛️ React    | サクサク動くUI              |
-| 🔥 Firebase | データ保存や認証に使用        |
-| 💾 GitHub Pages | 無料ホスティング！         |
+| Rakuten | We carry many shows that are currently being broadcast. |
+| Videx | yes. |
+| TrueID | You can see almost the entire episode. |
 
 ---
 
-## 📜 ライセンス
-
-この作品は [MIT License](LICENSE) のもとで自由に使ってOKです！  
-ただし、**推しへの愛だけは盗まないでくださいね💘**
+## 📜 License
+Please refrain from secondary distribution or lying about having made it yourself.
 
 ---
 
 <p align="center">
-  <img src="https://media.tenor.com/TtZ2gnzMcHMAAAAC/kawaii-anime.gif" width="200">
+  <img src="https://media.tenor.com/tVq_9UORcBQAAAAM/dan-da-dan.gif" width="200">
 </p>
 
 <p align="center">
-  ✨ みんなの推しがもっと輝きますように！ ✨  
-  🐣 ご利用ありがとうございます！🐣
+Thank you for using our service.
 </p>
