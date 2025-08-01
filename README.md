@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mizudako224/Anime-thumbnail-acquisition-site/refs/heads/main/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202025-07-13%20110021.png" width="600" alt="サイトのロゴ">
+  <img src="https://raw.githubusercontent.com/mizudako224/Anime-thumbnail-acquisition-site/refs/heads/main/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202025-08-02%20004421.png" width="600" alt="サイトのロゴ">
 </p>
 
-<h1 align="center">Anime-thumbnail-acquisition-site</h1>
+<h1 align="center">Anime Thumbnail Fetcher/アニメサムネイルフェッチャー</h1>
 
 <p align="center">
-  Simply enter the number and press a button to see a thumbnail of the episode.
+  Leaked images from the anime episode./アニメを先行で視聴しよう！
 </p>
 
 ---
@@ -13,7 +13,7 @@
 ## 📸 Site screenshot
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mizudako224/Anime-thumbnail-acquisition-site/refs/heads/main/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202025-07-13%20110222.png" width="700" alt="ウェブページ画像">
+  <img src="https://raw.githubusercontent.com/mizudako224/Anime-thumbnail-acquisition-site/refs/heads/main/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202025-08-02%20004759.png" width="700" alt="ウェブページ画像">
 </p>
 
 ---
