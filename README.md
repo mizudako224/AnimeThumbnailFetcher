@@ -1,7 +1,7 @@
 <h1 align="center">Anime Thumbnail Fetcher/アニメサムネイルフェッチャー</h1>
 
 <p align="center">
-  Leaked images from the anime episode./アニメを先行で視聴しよう！
+  Leaked images from the anime episode./アニメを先行で視聴しよう
 </p>
 
 <p align="center">
