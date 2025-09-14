@@ -6,6 +6,4 @@
 
 ## https://mizudako.xyz/atf.html
 
-<p align="center">
 Thank you for using our service.
-</p>
