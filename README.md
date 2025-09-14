@@ -4,5 +4,6 @@
   Leaked images from the anime episode./アニメを先行で視聴しよう！
 </p>
 
+<p align="center">
 Thank you for using our service.
 </p>
