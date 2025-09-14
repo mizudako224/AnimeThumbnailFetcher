@@ -4,6 +4,10 @@
   Leaked images from the anime episode./アニメを先行で視聴しよう
 </p>
 
-## https://mizudako.xyz/atf.html
+<p align="center">
+https://mizudako.xyz/atf.html
+</p>
 
+<p align="center">
 Thank you for using our service.
+</p>
