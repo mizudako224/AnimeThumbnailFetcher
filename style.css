@@ -1,0 +1,313 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background: #00a1d6;
+  color: white;
+  padding: 0.8rem 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  z-index: 2;
+}
+.logo { font-size: 1.3rem; font-weight: bold; }
+.lang-switcher button, .lang-switcher a {
+  background-color: white;
+  color: #00a1d6;
+  border: none;
+  padding: 0.5rem 0.6rem;
+  border-radius: 16px;
+  font-size: 0.89rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+.lang-switcher button:hover, .lang-switcher a:hover { background-color: #e6f7fb; }
+
+.hero {
+  position: relative;
+  background: url("https://github.com/tokei3n/AnimeThumbnailFetcher/blob/main/haikei.jpg") center/cover no-repeat;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* サムネイルは背景を受けないようにする */
+#thumbnails {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
+#thumbnails img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  aspect-ratio: 16 / 9; /* サムネイルを揃える */
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.hero-overlay {
+  background: rgba(255,255,255,0.9);
+  padding: 1.2rem;
+  border-radius: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+}
+
+select, input, button {
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  background-color: white;
+  transition: all 0.2s ease;
+}
+select:focus, input:focus {
+  outline: none;
+  border-color: #00a1d6;
+  box-shadow: 0 0 4px rgba(0,161,214,0.4);
+}
+button {
+  background-color: #00a1d6;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+button:hover { background-color: #0091c2; }
+
+.container {
+  max-width: 1280px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+  flex: 1;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+.grid-item {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+.grid-item:hover { transform: translateY(-3px); }
+.grid-item img, .grid-item video {
+  width: 100%;
+  display: block;
+  cursor: pointer;
+}
+
+/* モーダル */
+.modal {
+  display: flex;                 
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+
+  visibility: hidden;            
+  opacity: 0;
+  pointer-events: none;          
+  transition: opacity 0.8s ease; 
+}
+
+/* 表示用クラス */
+.modal.show {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 中身（画像/動画）のアニメーション */
+#modal-content img,
+#modal-content video {
+  max-width: 100%;
+  max-height: 90%;
+  border-radius: 10px;
+
+  transform: scale(0.92);              
+  opacity: 0;
+  transition: transform 0.8s cubic-bezier(.2,.8,.2,1), opacity 0.8s ease;
+}
+
+/* モーダル表示時は拡大してフェードイン */
+.modal.show #modal-content img,
+.modal.show #modal-content video {
+  transform: scale(1);
+  opacity: 1;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #666;
+  background: #f0f0f0;
+  padding: 1rem;
+}
+
+/* メディア切替ボタン */
+.media-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 1rem 0;
+}
+.media-toggle button {
+  padding: 0.6rem 1.5rem;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.95rem;
+  background: linear-gradient(135deg, #00a1d6, #00fffa);
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+.media-toggle button.active {
+  background: linear-gradient(135deg, #ff6a00, #ffb347);
+  color: #fff;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+.media-toggle button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+}
+
+/* 背景の半透明オーバーレイ */
+.bilibili-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 1000;
+}
+
+/* 表示時 */
+.bilibili-popup.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ポップアップ本体 */
+.bilibili-popup-inner {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 30px;
+  width: 500px;
+  max-width: 90%;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  position: relative;
+  animation: popupBounce 0.5s;
+}
+
+/* バウンドアニメーション */
+@keyframes popupBounce {
+  0% { transform: scale(0.5); }
+  60% { transform: scale(1.1); }
+  80% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+/* アイコン */
+.bilibili-popup img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+/* テキスト */
+.bilibili-popup-content {
+  flex: 1;
+}
+
+.bilibili-popup-content strong {
+  display: block;
+  font-size: 22px;
+  color: #ff4d6d;
+  margin-bottom: 10px;
+}
+
+.bilibili-popup-content p {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+/* 閉じるボタン */
+.bilibili-popup-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 24px;
+  color: #888;
+  font-weight: bold;
+}
+
+/* 動画 */
+.bilibili-popup-video {
+  width: 150px;       /* アイコンサイズより大きめに調整 */
+  height: 100px;
+  border-radius: 12px;
+  margin-right: 20px;
+  flex-shrink: 0;
+  object-fit: cover;  /* 動画を枠にフィット */
+}
+
+.bilibili-popup-close:hover {
+  color: #ff4d6d;
+}
+
+@media (max-width: 550px) {
+  .hero-overlay { flex-direction: column; gap: 0.6rem; }
+  select, input, button { width: 85%; }
+  .grid-container { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+  .logo { font-size: 1.3rem; }
+  .lang-switcher {
+    display: flex; flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  .lang-switcher button { flex: 0 0 auto; width: 48%; max-width: 120px; text-align: center; }
+  .lang-switcher a { flex-basis: 100%; text-align: center; }
+}
